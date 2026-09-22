@@ -1,19 +1,32 @@
-# React + TypeScript + Vite
+# GIM — Gestor de Información Meteorológica del Parque Nacional Lanín
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Webapp para visualizar y explorar el índice FWI (Fire Weather Index) de las estaciones meteorológicas del Parque Nacional Lanín.
 
-Currently, two official plugins are available:
+🔗 **Producción:** [gim-pnl.vercel.app](https://gim-pnl.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- React + Vite + TypeScript
+- Tailwind CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Desarrollo local
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+La app corre en `http://localhost:5174`. Ver `CLAUDE.md` para el detalle de la API consumida y las convenciones del proyecto.
+
+## Build
+
+```bash
+npm run build
+```
+
+## Expandiendo la configuración de ESLint
+
+Si vas a seguir desarrollando esta aplicación, se recomienda habilitar reglas de lint con reconocimiento de tipos:
 
 ```js
 export default defineConfig([
@@ -21,29 +34,29 @@ export default defineConfig([
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
-      // Other configs...
+      // Otras configs...
 
-      // Remove tseslint.configs.recommended and replace with this
+      // Reemplazar tseslint.configs.recommended por esto
       tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
+      // O, para reglas más estrictas
       tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
+      // Opcionalmente, reglas de estilo
       tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
+      // Otras configs...
     ],
     languageOptions: {
       parserOptions: {
         project: ['./tsconfig.node.json', './tsconfig.app.json'],
         tsconfigRootDir: import.meta.dirname,
       },
-      // other options...
+      // otras opciones...
     },
   },
 ])
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+También se pueden instalar [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) y [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) para reglas específicas de React:
 
 ```js
 // eslint.config.js
@@ -55,10 +68,8 @@ export default defineConfig([
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
-      // Other configs...
-      // Enable lint rules for React
+      // Otras configs...
       reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
       reactDom.configs.recommended,
     ],
     languageOptions: {
@@ -66,7 +77,7 @@ export default defineConfig([
         project: ['./tsconfig.node.json', './tsconfig.app.json'],
         tsconfigRootDir: import.meta.dirname,
       },
-      // other options...
+      // otras opciones...
     },
   },
 ])
