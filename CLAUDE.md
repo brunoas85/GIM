@@ -1,4 +1,4 @@
-# SIFWI — Sistema de Información FWI
+# GIM — Gestor de Información Meteorológica del Parque Nacional Lanín
 
 ## Descripción del proyecto
 
