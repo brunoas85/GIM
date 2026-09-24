@@ -50,11 +50,18 @@ export async function iniciarSesion(usuario: string, contrasena: string): Promis
   throw new Error('Usuario o contraseña incorrectos')
 }
 
-export const obtenerEstaciones = () =>
-  get<ResumenEstacion[]>('/estaciones')
-
 export const obtenerConfigEstaciones = () =>
   get<Record<string, ConfiguracionEstacion>>('/estaciones/config')
+
+// /estaciones lista todos los CSV de la carpeta del server (incluidos backups como "87765_viejo"),
+// así que se filtra por las estaciones configuradas. Si la config falla, se muestran todas.
+export const obtenerEstaciones = async () => {
+  const [estaciones, config] = await Promise.all([
+    get<ResumenEstacion[]>('/estaciones'),
+    obtenerConfigEstaciones().catch(() => null),
+  ])
+  return config ? estaciones.filter((e) => e.id in config) : estaciones
+}
 
 export const obtenerEstacion = (id: string) =>
   get<DetalleEstacion>(`/estacion/${id}`)
